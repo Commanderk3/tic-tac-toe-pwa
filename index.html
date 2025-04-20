@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="icon.png" type="image/png">
+
   <title>Tic Tac Toe</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow-x: hidden;
+      /* prevents horizontal scroll */
+    }
+
     body {
       font-family: sans-serif;
       text-align: center;
-      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding-top: 40px;
+      /* replace margin with padding */
     }
+
 
     #board {
       display: grid;
@@ -43,16 +66,40 @@
       padding: 10px 20px;
       font-size: 1rem;
     }
+
+    footer {
+      margin-top: 10px;
+      padding: 25px 0;
+      background-color: #f9f9f9;
+      font-size: 0.9rem;
+      color: #555;
+    }
   </style>
 </head>
+
 <body>
 
   <h1>Tic Tac Toe</h1>
   <div id="board"></div>
   <div id="status">Your turn (X)</div>
-  <button onclick="restartGame()">Restart</button>
+  <div><button onclick="restartGame()">Restart</button></div>
+
+  <footer>
+    <h3>Made with ❤️ by Diwangshu Kakoty, Umaaditya Singh, Saurav Bakshi</h3>
+  </footer>
 
   <script src="./game.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js")
+          .then(() => console.log("✅ Service Worker registered"))
+          .catch(err => console.error("❌ Service Worker registration failed:", err));
+      });
+    }
+  </script>
+  
 
 </body>
+
 </html>
